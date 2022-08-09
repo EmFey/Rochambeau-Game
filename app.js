@@ -1,18 +1,19 @@
 function getComputerChoice() {
     let pcHand = ["ROCK", "PAPER", "SCISSORS"];
-    return console.log(pcHand[Math.floor(Math.random() * pcHand.length)]);
+    return pcHand[Math.floor(Math.random() * pcHand.length)];
 }
 
 function gameRound(playerSelection, pcSelection) {
-    playerSelection = prompt("Type Rock, Paper or Scissors").toUpperCase();
-    pcSelection = getComputerChoice();
     
     if ((playerSelection == "ROCK" && pcSelection == "SCISSORS") || (playerSelection == "PAPER" && pcSelection == "ROCK") || (playerSelection == "SCISSORS" && pcSelection == "PAPER")) {
-        console.log("Congrats! You Win!");
+        console.log(`Congrats! You Win! ${playerSelection} beat ${pcSelection}`);
     } else if (playerSelection === pcSelection) {
         console.log("It is a draw!");
     }
     else { console.log(`HAHA! Loser! ${pcSelection} beat ${playerSelection}`); }
 }
 
-gameRound();
+const playerSelection = prompt("Type Rock, Paper or Scissors").toUpperCase();
+const pcSelection = getComputerChoice();
+
+console.log(gameRound(playerSelection, pcSelection));
