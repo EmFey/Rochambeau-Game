@@ -8,15 +8,18 @@ function invalidInput() {
 }
 
 function gameRound(playerSelection, pcSelection) {
+    let roundResult;
 
     if ((playerSelection == "ROCK" && pcSelection == "SCISSORS") || (playerSelection == "PAPER" && pcSelection == "ROCK") || (playerSelection == "SCISSORS" && pcSelection == "PAPER")) {
-        console.log(`Congrats! You Win! ${playerSelection} beat ${pcSelection}`);
+        roundResult = console.log(`Congrats! You Win! ${playerSelection} beat ${pcSelection}`);
     } else if (playerSelection === pcSelection) {
-        console.log("It is a draw!");
+        roundResult = console.log("It is a draw!");
     } else if (playerSelection != "ROCK" || "PAPER" || "SCISSORS") {
-        invalidInput();
+        roundResult = invalidInput();
     }
-    else { console.log(`HAHA! Loser! ${pcSelection} beat ${playerSelection}`); }
+    else { roundResult = console.log(`HAHA! Loser! ${pcSelection} beat ${playerSelection}`); }
+
+    return roundResult;
 }
 
 function game() {
