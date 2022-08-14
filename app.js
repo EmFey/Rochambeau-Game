@@ -1,10 +1,14 @@
 const r = document.querySelector(".rock");
 const p = document.querySelector(".paper");
 const s = document.querySelector(".scissors");
+const userPoint = document.querySelector(".userPoint");
+const pcPoint = document.querySelector(".pcPoint");
+const result = document.querySelector(".result-text");
+const gameResult = document.querySelector(".game-result");
+
 let playerScore = 0;
 let pcScore = 0;
-let roundWinner = '';
-let result = document.querySelector(".resultMessage");
+
 
 
 function getComputerChoice() {
@@ -25,16 +29,34 @@ function gameRound(playerSelection, pcSelection) {
   }
 }
 
+
+function game() {
+    if (playerScore === 5) {
+        gameResult.textContent = "You won the game";
+    }
+    if (pcScore === 5) {
+        gameResult.textContent = "Computer won the game";
+    }
+}
+
+
+
 function Tie() {
-    console.log("Its a draw");
+    result.textContent = "It's a draw";
 }
 
 function Win() {
-    console.log("You win");
+    result.textContent = "You won";
+    playerScore++;
+    userPoint.textContent = playerScore;
+    pcPoint.textContent = pcScore;
 }
 
 function Lose() {
-    console.log("You lose");
+    result.textContent = "Yo lost";
+    pcScore++;
+    userPoint.textContent = playerScore;
+    pcPoint.textContent = pcScore;
 }
 
 
@@ -43,16 +65,7 @@ function main() {
     r.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
     p.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
     s.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
+    game();
 }
 
 main();
-
-/*
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Type Rock, Paper or Scissors").toUpperCase();
-        const pcSelection = getComputerChoice();
-        console.log(gameRound(playerSelection, pcSelection));
-    }
-}
-*/
