@@ -27,15 +27,23 @@ function gameRound(playerSelection, pcSelection) {
   if ( (pcSelection === 'ROCK' && playerSelection === 'SCISSORS') || (pcSelection === 'PAPER' && playerSelection === 'ROCK') || (pcSelection === 'SCISSORS' && playerSelection === 'PAPER')) {
     return Lose();
   }
+  gameOver();
 }
 
+function disableButtons() {
+      r.disabled = true;
+      p.disabled = true;
+      s.disabled = true;
+}
 
-function game() {
+function gameOver() {
     if (playerScore === 5) {
         gameResult.textContent = "You won the game";
+        disableButtons();
     }
     if (pcScore === 5) {
         gameResult.textContent = "Computer won the game";
+        disableButtons();
     }
 }
 
@@ -53,7 +61,7 @@ function Win() {
 }
 
 function Lose() {
-    result.textContent = "Yo lost";
+    result.textContent = "You lost";
     pcScore++;
     userPoint.textContent = playerScore;
     pcPoint.textContent = pcScore;
@@ -65,7 +73,6 @@ function main() {
     r.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
     p.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
     s.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
-    game();
 }
 
 main();
