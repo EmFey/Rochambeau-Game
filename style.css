@@ -1,9 +1,35 @@
-body {
+html, body {
     height: 100%;
     display: flex;
     margin: 0;
     flex-direction: column;
     font-family: monospace;
+}
+
+.header, .footer {
+    background-color: #1F2937;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.content {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+    border: #0051ff solid;
 }
 
 img {
@@ -23,8 +49,23 @@ button {
     display: flex;
     justify-content: center;
     text-align: center;
-    gap: 50px;
     flex-wrap: wrap;
+    border: none;
+    border-radius: 6px;
+    margin: 5px;
+    padding: 10px;
+    background-color: #0051ff;
+    color: aliceblue;
+}
+
+button:hover {
+    background-color: #00329f;
+}
+
+button:active {
+  background-color: #413bb1;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
 }
 
 .info {
@@ -47,4 +88,13 @@ button {
 
 .info img:hover {
     border-color: #0051ff;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 20px;
 }
