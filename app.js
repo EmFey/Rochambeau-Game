@@ -15,38 +15,33 @@ function getComputerChoice() {
 
 function gameRound(playerSelection, pcSelection) {
   if (playerSelection === pcSelection) {
-    roundWinner = "This is a tie";
+    return Tie();
   }
-  if ( (playerSelection === 'ROCK' && pcSelection === 'SCISSORS') || (playerSelection === 'SCISSORS' && pcSelection === 'PAPER') || (playerSelection === 'PAPER' && pcSelection === 'ROCK')) {
-    playerScore++;
-    roundWinner = "player";
+  if ( (playerSelection === 'ROCK' && pcSelection === 'SCISSORS') || (playerSelection === 'PAPER' && pcSelection === 'ROCK') || (playerSelection === 'SCISSORS' && pcSelection === 'PAPER')) {
+    return Win();
   }
-  if ( (pcSelection === 'ROCK' && playerSelection === 'SCISSORS') || (pcSelection === 'SCISSORS' && playerSelection === 'PAPER') || (pcSelection === 'PAPER' && playerSelection === 'ROCK')) {
-    pcScore++;
-    roundWinner = "pc";
+  if ( (pcSelection === 'ROCK' && playerSelection === 'SCISSORS') || (pcSelection === 'PAPER' && playerSelection === 'ROCK') || (pcSelection === 'SCISSORS' && playerSelection === 'PAPER')) {
+    return Lose();
   }
-  resultMessage(roundWinner, playerSelection, pcSelection)
 }
 
-function resultMessage(winner, playerSelection, computerSelection) {
-    if (winner === 'player') {
-      result.textContent = `You win (${playerSelection} beats ${computerSelection})`;
-      return;
-    }
-    if (winner === 'pc') {
-      result.textContent = `You lose (${playerSelection} is beaten by ${computerSelection})`;
-      return;
-    }
-    result.textContent = "Its a draw";
+function Draw() {
+    console.log("Its a draw");
 }
 
-const pcSelection = getComputerChoice();
+function Win() {
+    console.log("You win");
+}
+
+function Lose() {
+    console.log("You lose");
+}
 
 r.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
 p.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
 s.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
 
-console.log(gameRound(playerSelection, pcSelection));
+console.log();
 
 /*
 function game() {
