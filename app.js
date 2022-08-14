@@ -25,7 +25,7 @@ function gameRound(playerSelection, pcSelection) {
   }
 }
 
-function Draw() {
+function Tie() {
     console.log("Its a draw");
 }
 
@@ -37,11 +37,15 @@ function Lose() {
     console.log("You lose");
 }
 
-r.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
-p.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
-s.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
 
-console.log();
+
+function main() {
+    r.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
+    p.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
+    s.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
+}
+
+main();
 
 /*
 function game() {
