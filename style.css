@@ -95,9 +95,18 @@ button:active {
 
 .footer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    padding: 20px;
+    padding: 10px;
+}
+
+.lost {
+    color: red;
+    font-size: larger;
+}
+
+.won {
+    color: green;
+    font-size: larger;
 }

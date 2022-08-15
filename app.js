@@ -19,15 +19,26 @@ function getComputerChoice() {
 
 function gameRound(playerSelection, pcSelection) {
   if (playerSelection === pcSelection) {
-    return Tie();
+    Tie();
   }
-  if ( (playerSelection === 'ROCK' && pcSelection === 'SCISSORS') || (playerSelection === 'PAPER' && pcSelection === 'ROCK') || (playerSelection === 'SCISSORS' && pcSelection === 'PAPER')) {
-    return Win();
+
+  else if ( (playerSelection === 'ROCK' && pcSelection === 'SCISSORS') || (playerSelection === 'PAPER' && pcSelection === 'ROCK') || (playerSelection === 'SCISSORS' && pcSelection === 'PAPER')) {
+    Win();
+    if (playerScore === 5) {
+      gameResult.classList.add(".won");
+      gameResult.textContent = "You won the game";
+      disableButtons();
+    }
   }
-  if ( (pcSelection === 'ROCK' && playerSelection === 'SCISSORS') || (pcSelection === 'PAPER' && playerSelection === 'ROCK') || (pcSelection === 'SCISSORS' && playerSelection === 'PAPER')) {
-    return Lose();
+
+  else ( (pcSelection === 'ROCK' && playerSelection === 'SCISSORS') || (pcSelection === 'PAPER' && playerSelection === 'ROCK') || (pcSelection === 'SCISSORS' && playerSelection === 'PAPER')) ;{
+    Lose();
+    if (pcScore === 5) {
+      gameResult.classList.add(".lose");
+      gameResult.textContent = "Computer won the game";
+      disableButtons();
+    }
   }
-  gameOver();
 }
 
 function disableButtons() {
@@ -35,18 +46,6 @@ function disableButtons() {
       p.disabled = true;
       s.disabled = true;
 }
-
-function gameOver() {
-    if (playerScore === 5) {
-        gameResult.textContent = "You won the game";
-        disableButtons();
-    }
-    if (pcScore === 5) {
-        gameResult.textContent = "Computer won the game";
-        disableButtons();
-    }
-}
-
 
 
 function Tie() {
