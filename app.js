@@ -1,53 +1,57 @@
-const r = document.querySelector(".rock");
-const p = document.querySelector(".paper");
-const s = document.querySelector(".scissors");
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
 const userPoint = document.querySelector(".userPoint");
 const pcPoint = document.querySelector(".pcPoint");
 const result = document.querySelector(".result-text");
 const gameResult = document.querySelector(".game-result");
+const winningScore = 5;
 
 let playerScore = 0;
 let pcScore = 0;
 
 function getComputerChoice() {
-  let pcHand = ["ROCK", "PAPER", "SCISSORS"];
-  return pcHand[Math.floor(Math.random() * pcHand.length)];
+  const choices = ["ROCK", "PAPER", "SCISSORS"];
+  return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function gameRound(playerSelection, pcSelection) {
-  if (playerSelection === pcSelection) {
-    Tie();
-  }
-
-  if ( (playerSelection === 'ROCK' && pcSelection === 'SCISSORS') || (playerSelection === 'PAPER' && pcSelection === 'ROCK') || (playerSelection === 'SCISSORS' && pcSelection === 'PAPER')) {
-    Win();
-  }
-
-  if ( (pcSelection === 'ROCK' && playerSelection === 'SCISSORS') || (pcSelection === 'PAPER' && playerSelection === 'ROCK') || (pcSelection === 'SCISSORS' && playerSelection === 'PAPER')) ;{
-    Lose();
+  switch(playerSelection + pcSelection) {
+    case "ROCKSCISSORS":
+    case "PAPERROCK":
+    case "SCISSORSPAPER":
+      win();
+      break;
+    case "ROCKPAPER":
+    case "PAPERSCISSORS":
+    case "SCISSORSROCK":
+      lose();
+      break;
+    default:
+      tie();
   }
 }
 
-function Tie() {
+function tie() {
   result.textContent = "It's a draw";
 }
 
-function Win() {
+function win() {
   playerScore++;
   result.textContent = "You won";
   userPoint.textContent = playerScore;
-  if (playerScore === 5) {
+  if (playerScore === winningScore) {
     gameResult.textContent = "You won the game";
     gameResult.classList.add("won");
     disableButtons();
   }
 }
 
-function Lose() {
+function lose() {
   pcScore++;
   result.textContent = "You lost";
   pcPoint.textContent = pcScore;
-  if (pcScore === 5) {
+  if (pcScore === winningScore) {
     gameResult.textContent = "Computer won the game";
     gameResult.classList.add("lose");
     disableButtons();
@@ -55,15 +59,28 @@ function Lose() {
 }
 
 function disableButtons() {
-  r.disabled = true;
-  p.disabled = true;
-  s.disabled = true;
+  rock.disabled = true;
+  paper.disabled = true;
+  scissors.disabled = true;
 }
-  
+
+function reset() {
+  playerScore = 0;
+  pcScore = 0;
+  userPoint.textContent = playerScore;
+  pcPoint.textContent = pcScore;
+  result.textContent = "";
+  gameResult.textContent = "";
+  gameResult.classList.remove("won", "lose");
+  rock.disabled = false;
+  paper.disabled = false;
+  scissors.disabled = false;
+}
+
 function main() {
-  r.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
-  p.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
-  s.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
+  rock.addEventListener("click", () => gameRound("ROCK", getComputerChoice()));
+  paper.addEventListener("click", () => gameRound("PAPER", getComputerChoice()));
+  scissors.addEventListener("click", () => gameRound("SCISSORS", getComputerChoice()));
 }
-  
+
 main();
